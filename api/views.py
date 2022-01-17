@@ -10,14 +10,9 @@ def list_people(request):
     serialized_people = PersonSerializer(people, many=True)
     return Response(serialized_people.data, status=status.HTTP_200_OK)
     
-@api_view(['GET'])
+@api_view(['POST'])
 def create_person(request):
-    person = PersonSerializer(data={
-        'name': 'Bob',
-        'gender': 'Male',
-        'country': 'US',
-        'age': 55
-    })
+    person = PersonSerializer(data=request.data)
     if person.is_valid():
         person.save()
         return Response(person.data, status=status.HTTP_201_CREATED)

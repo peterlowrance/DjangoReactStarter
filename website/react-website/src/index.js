@@ -10,3 +10,4 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
+window.getCSRFToken = () => document.cookie.split(';').find(c => c.startsWith('csrftoken')).substring('csrftoken'.length + 1);
