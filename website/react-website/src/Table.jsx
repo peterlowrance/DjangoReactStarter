@@ -1,15 +1,12 @@
 function Table(props) {
-    const formatName = (name) => {
-      return name[0].toUpperCase() + name.substr(1).toLowerCase();
-    };
-  
-    // The return of a component returns/computes JSX every render
+
     return (
       <span className="my-table">
+        {props.data.length > 0 && (
         <table>
           <thead>
             <tr>
-              {props.columnNames.map((name) => (
+              {Object.keys(props.data[0]).map((name) => (
                 <th key={name}>{name}</th>
               ))}
             </tr>
@@ -17,17 +14,17 @@ function Table(props) {
           <tbody>
             {props.data.map((val, i) => (
               <tr key={i}>
-                <td>{val[0]}</td>
-                <td>{formatName(val[1])}</td>
-                <td>{val[2]}</td>
+                {Object.values(val).map((v, i) => (
+                  <td key={i}>{v}</td>
+                ))}
               </tr>
             ))}
           </tbody>
         </table>
+      )}
       </span>
     );
   }
   
-  // Export the component for importing into other components
   export default Table;
   
