@@ -4,12 +4,16 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./state/store";
 import App from "./App";
+import { EuiProvider } from '@elastic/eui';
+
 
 ReactDOM.render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <EuiProvider colorMode="light">
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </EuiProvider>
   </StrictMode>,
   document.getElementById("app")
 );
